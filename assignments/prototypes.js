@@ -54,14 +54,12 @@ CharacterStats.prototype.takeDamage = function() {
 */
 
 function Humanoid(attributes){
-  GameObject.call(this, attributes);
   CharacterStats.call(this, attributes);
   this.team = attributes.team;
   this.weapons = attributes.weapons;
   this.language = attributes.language;
 }
 
-Humanoid.prototype = Object.create(GameObject.prototype);
 Humanoid.prototype = Object.create(CharacterStats.prototype);
 
 Humanoid.prototype.greet = function() {
@@ -142,3 +140,46 @@ Humanoid.prototype.greet = function() {
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+  function Hero(attributes) {
+    Humanoid.call(this, attributes);
+  }
+
+  Hero.prototype = Object.create(Humanoid.prototype);
+
+  function Villian(attributes){
+    Humanoid.call(this, attributes);
+  }
+
+  Villian.prototype = Object.create(Humanoid.prototype);
+
+  mainCharacter = new Hero ({
+    createdAt: new Date(),
+    dimensions: {
+      length: 2,
+      width: 2,
+      height: 5
+    },
+    healthPoints: 100,
+    name: "Reuben",
+    team: "Heroes",
+    weapons: [
+      "Hero's Sword",
+      "Cure Stone"
+    ],
+    language: "Elvish"
+  })
+
+  mainVillian = new Villian({
+    createdAt: new Date(),
+    dimensions: {
+      length: 2,
+      width: 3,
+      height: 6
+    },
+    healthPoints: 200,
+    name: ""
+  })
+
+  
+
